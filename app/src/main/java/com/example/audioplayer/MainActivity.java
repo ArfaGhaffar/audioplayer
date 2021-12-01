@@ -14,6 +14,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+    public void play(View v) {
+        if (player == null) {
+            player = MediaPlayer.create(this, R.raw.music);
+            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    stopPlayer();
+                }
+            });
+        }
+
+        player.start();
+    }
 
     public void pause(View v) {
         if (player != null) {
